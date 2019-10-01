@@ -16,3 +16,11 @@ app.set('views','./views');
 app.set('view engine', 'hbs');
 app.enable('view cache');
 var handlebars = require('handlebars');
+
+
+
+app.get("/",(request, response) =>{    
+res.send("hello");     
+});
+
+exports.app = functions.https.onRequest(app);
