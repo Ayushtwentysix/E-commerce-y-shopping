@@ -17,7 +17,19 @@ app.set('view engine', 'hbs');
 app.enable('view cache');
 var handlebars = require('handlebars');
 
-
+var cookieParser = require("cookie-parser");
+appSeven.use(session({
+      store: new FirebaseStore({
+        database: firebaseApp.database()
+      }),
+      name: '__session',
+      secret: 'mysupersecret',
+      resave: false,
+      saveUninitialized: false,
+      cookie: {maxAge : 10*60*1000 },
+      secure: true
+    }));
+appSeven.use(cookieParser('mysupersecret'));
 
 app.get("/",(request, response) =>{    
 res.send("hello");     
