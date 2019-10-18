@@ -68,4 +68,17 @@ app.get("/",(request, response) =>{
 res.send("hello");     
 });
 
+
+const appFour = express();
+appFour.use(bodyParser.urlencoded({extended: true}));
+appFour.use(bodyParser.json());
+appFour.engine('hbs', engines.handlebars);
+appFour.set('views','./views');
+appFour.set('view engine', 'hbs');
+
+appFour.get('/contact_us', (request,response) =>{
+    response.render('contactUs.hbs');
+});
+
 exports.app = functions.https.onRequest(app);
+exports.appFour = functions.https.onRequest(appFour);

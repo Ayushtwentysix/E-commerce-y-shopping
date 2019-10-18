@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact Us</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">	
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/components/tab.min.js"></script>   
+
+<style type="text/css">
+.navbar.navbar-default {
+	
+    background-color: dodgerblue;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    padding-bottom: 30px;
+}
+
+.navbar.navbar-default .navbar-collapse {
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+</style>
+</head>
+<body>
+
+
+	 <nav class="navbar nav transparent navbar-default">
+  
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" >
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/" style="font-size:3.5em; color: white; margin-top:10px;">Logo</a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar" class="page-header">
+        <ul class="nav navbar-nav navbar-right">
+         <li><a href="#" style="font-size:1.5em; color: white; margin-top:10px;">Contact Us</a></li>
+          <li><a href="/about_us" style="font-size:1.5em; color: white; margin-top:10px;">About Us</a></li>
+          
+        </ul>
+      </div>
+    </div>
+ </nav> 
+
+<div class="ui container">
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="first">FAQ</a>
+  <a class="item" data-tab="second">Address</a>
+  <a class="item" data-tab="third">Phone/Fax</a>
+</div>
+<div class="ui bottom attached tab segment active" data-tab="first">
+  <strong><h2>FAQ</h2></strong>
+  	<h3>The Ordering Process</h3>
+	<ol>
+	<li>Select a design to begin creating a personalized product.</li>
+	<li>Instantly view your design with our live preview.</li>
+	<li>If you are not satisfied with the options selected, experiment with other type styles, ink colors, and line placements.</li>
+	<li>Place your order.</li>
+
+	</ol>
+	<h3>Shipping & Delivery</h3>
+
+	<h4>How fast will I get my order?</h4>
+	<p>
+		he number of days for delivery depends on the shipping method you choose and your location (identified by your zip code). As part of the online order process, we show you the shipping charges for available shipping methods, such as: ground, 2-day and next day shipment.
+	</p>
+
+	<h4>Can I split my order and ship to multiple locations?</h4>
+	<p>
+		Absolutely! As you are moving through the ordering process, you will be presented a Shipping Method page where you can make your selection of shipping methods by product. Each selection has estimated delivery dates associated.
+	</p>
+
+</div>
+<div class="ui bottom attached tab segment" data-tab="second">
+  <strong><h2>Address</h2></strong>
+  <h3>Walmart Promo Shop</h3>
+  <p>
+  	PO Box 351230 </p>
+  	<p>
+    New Braunfels, TX 78135
+  </p>
+
+</div>
+<div class="ui bottom attached tab segment" data-tab="third">
+  <strong><h2>Phone/Fax</h2></strong>
+  <h3><strong>Phone:</strong> 1-866-521-6212</h3>
+  <h3><strong>Fax:</strong> 1-800-822-0005</h3>
+</div>
+
+</div>
+
+
+
+
+<script>
+$('.menu .item')
+  .tab()
+;
+</script>
+</body>
+</html>
