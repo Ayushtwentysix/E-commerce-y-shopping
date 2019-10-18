@@ -65,7 +65,17 @@ function Cart(oldCart) {
 }
 
 app.get("/",(request, response) =>{    
-res.send("hello");     
+    function getProducts(){
+    var ref = firebaseApp.database().ref('products');
+    return ref.once('value').then(snap => snap.val());   
+}
+  getProducts().then(products => {
+      console.log("home products",facts);
+     response.render('home-new',{products})       
+       return null;    
+    }).catch(error => {
+              console.log('error', error);
+            });   
 });
 
 
