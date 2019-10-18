@@ -5,6 +5,13 @@
       {
         "source": "/",
         "function": "app" 
+      },{
+        "source": "/contact_us",
+        "function": "appFour" 
+      },
+       {
+        "source": "/about_us",
+        "function": "appFive" 
       }
     ]
   },
