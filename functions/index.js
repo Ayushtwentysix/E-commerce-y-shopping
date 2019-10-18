@@ -80,5 +80,16 @@ appFour.get('/contact_us', (request,response) =>{
     response.render('contactUs.hbs');
 });
 
+const appFive = express();
+appFive.use(bodyParser.urlencoded({extended: true}));
+appFive.use(bodyParser.json());
+appFive.engine('hbs', engines.handlebars);
+appFive.set('views','./views');
+appFive.set('view engine', 'hbs');
+
+appFive.get("/about_us", (req,res) =>{
+    res.render("aboutUs.hbs");
+});
+
 exports.app = functions.https.onRequest(app);
 exports.appFour = functions.https.onRequest(appFour);
