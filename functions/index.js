@@ -147,5 +147,35 @@ appSeven.post("/auth/loginPost",(req,res)=>{
 return res.locals.session = req.session;
 })
 
+appSeven.get("/signUp", (req,res) => {
+    res.render("signup.hbs", {error: null});
+});
+
+
+appSeven.post("/signup/auth",(req,res)=>{
+    var email=req.body.email;
+    var password =req.body.password    
+    firebaseApp_web.auth().createUserWithEmailAndPassword(email, password).then(function(){        
+        var user = firebaseApp_web.auth().currentUser;
+                user.sendEmailVerification().then(function() {
+                console.log("email send for verification");
+                return null;
+        }).catch(function(error) {
+        console.log("error happen while sending verification mail: ",error);
+        });
+          res.redirect("/auth/login");
+      return null;  
+    }).catch(function(error) {
+  var errorCode = error.code; var errorMessage = error.message;
+  console.log("errorCode: ",errorCode);  console.log("errorMessage: ",errorMessage);
+      var err;
+  if(errorCode === "auth/email-already-in-use") err = "The provided email is already in use by an existing user. Please choose another";
+  if(errorCode === "auth/weak-password") err = "Password must be at least six characters." ;
+  if(errorCode === "auth/invalid-email") err = "Invalid Email.";
+  
+  res.render("login.hbs", {error: err} );
+});
+})
+
 exports.app = functions.https.onRequest(app);
 exports.appFour = functions.https.onRequest(appFour);
