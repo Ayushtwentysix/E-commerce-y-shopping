@@ -101,5 +101,18 @@ appFive.get("/about_us", (req,res) =>{
     res.render("aboutUs.hbs");
 });
 
+
+const appSeven = express();
+appSeven.use(bodyParser.urlencoded({extended: true}));
+appSeven.use(bodyParser.json());
+appSeven.engine('hbs', engines.handlebars);
+appSeven.set('views','./views');
+appSeven.set('view engine', 'hbs');
+
+appSeven.get("/auth/login",(req,res) => {
+    console.log("step 1, login url");
+    res.render("login.hbs", {error: null});
+});
+
 exports.app = functions.https.onRequest(app);
 exports.appFour = functions.https.onRequest(appFour);
