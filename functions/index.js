@@ -290,4 +290,4 @@ appSix.post('/shopping-cart/send',(req,res) => {
 exports.app = functions.https.onRequest(app);
 exports.appFour = functions.https.onRequest(appFour);
 exports.appSeven = functions.https.onRequest(appSeven);
-
+exports.appSix = functions.https.onRequest(appSix);
