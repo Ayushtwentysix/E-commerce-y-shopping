@@ -418,3 +418,4 @@ exports.appFour = functions.https.onRequest(appFour);
 exports.appSeven = functions.https.onRequest(appSeven);
 exports.appSix = functions.https.onRequest(appSix);
 exports.appTwo = functions.https.onRequest(appTwo);
+exports.appEight = functions.https.onRequest(appEight);
