@@ -114,5 +114,38 @@ appSeven.get("/auth/login",(req,res) => {
     res.render("login.hbs", {error: null});
 });
 
+appSeven.post("/auth/loginPost",(req,res)=>{   
+                var email=req.body.email ;
+    var password =req.body.password ;
+    console.log("step 2, login/auth url");
+    firebaseApp_web.auth().signInWithEmailAndPassword(email, password).then((user)=>{
+        console.log("user 2:",user);
+        console.log("the person is signed in");
+        
+      req.session.user = JSON.stringify(user);
+      req.session.count = 0;
+      console.log("req.session.user in loginPost: ",req.session.user);
+      console.log("is mail verified",user.user.emailVerified);
+      if(user.user.emailVerified === false){
+         var err= "Email address is not verified. Check mail box.";
+          res.render("login.hbs", {error:err});
+      }
+      else {
+          res.redirect("/auth/auth-shopping-cart");
+      }
+        return  null;
+    }).catch(function(error) {
+  var errorCode = error.code; var errorMessage = error.message;
+  console.log("errorCode: ",errorCode); console.log("errorMessage: ",errorMessage);
+  var err;
+  if(errorCode === "auth/user-not-found") err = "Please Sign Up";
+  if(errorCode === "auth/invalid-password") err = "Password must be at least six characters."; 
+  if(errorCode === "auth/wrong-password") err = "The password is wrong";
+  if(errorCode === "auth/invalid-email") err= "Invalid Email";
+  res.render("login.hbs", {error: err} ); 
+});
+return res.locals.session = req.session;
+})
+
 exports.app = functions.https.onRequest(app);
 exports.appFour = functions.https.onRequest(appFour);
