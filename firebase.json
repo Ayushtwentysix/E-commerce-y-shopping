@@ -12,6 +12,10 @@
        {
         "source": "/about_us",
         "function": "appFive" 
+      },
+	 {
+        "source": "**",
+        "function": "appSeven" 
       }
     ]
   },
