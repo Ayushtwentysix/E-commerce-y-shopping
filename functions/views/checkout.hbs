@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Checkout Window</title>
+  {{!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />--}}
+  {{!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />--}}
+        {{!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
+         {{!--<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">--}}
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700" rel="stylesheet">
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   {{!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async></script> --}}
+  {{!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">--}}
+  {{!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">--}}
+
+       {{!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>--}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+  
+  <style>
+    body {
+      font-family: 'Comfortaa', cursive;
+    }
+    
+  </style>
+</head>
+<body>
+
+{{# if products }}
+
+   <div class="ui container">
+    <div class="ui stackable one column centered grid">
+        <div class="column">
+
+<div class="ui three steps">
+  <div class="completed step">
+    <i class="edit icon"></i>
+    <div class="content">
+      <div class="title" style="font-family: 'Comfortaa', cursive;">Quantity Details</div>
+      <div class="description" style="font-family: 'Comfortaa', cursive;">Enter Quantity for products</div>
+    </div>
+  </div>
+  <div class="active step">
+    <i class="payment icon"></i>
+    <div class="content">
+      <div class="title" style="font-family: 'Comfortaa', cursive;">Billing & Confirmation</div>
+            <div class="description" style="font-family: 'Comfortaa', cursive;">Enter billing information</div>
+    </div>
+  </div>
+  <div class="disabled step">
+    <i class="envelope icon"></i>
+    <div class="content">
+      <div class="title" style="font-family: 'Comfortaa', cursive;">Check Mail</div>
+      <div class="description" style="font-family: 'Comfortaa', cursive;">See mail inbox for receipt</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+   </div> 
+   
+<div class="ui container">
+  
+<div class="ui mobile reversed equal width grid stackable">
+  <div class="twelve wide column">
+    <div class="ui attached message">
+  <div class="header" style="font-family: 'Comfortaa', cursive;">
+    Checkout Section
+  </div>
+  <p style="font-family: 'Comfortaa', cursive;">Fill out the form below to checkout</p>
+</div>
+<form class="ui form attached fluid segment large" method="POST" action="/shopping-cart/send/final">
+    <h2 class="ui dividing header" style="font-family: 'Comfortaa', cursive;">Shipping Information</h2>
+  <div class="two fields">
+    <div class="required field">
+      <label style="font-family: 'Comfortaa', cursive;">Name</label>
+     <input type="text" name="name" placeholder="Full name"required>
+    </div>
+     <div class="required field">
+      <label style="font-family: 'Comfortaa', cursive;">Company</label>
+      <input type="text" name="company" required>
+  </div>
+  </div>
+  <div class="required field">
+    <label style="font-family: 'Comfortaa', cursive;">Billing Address</label>
+      <div class="twelve wide field">
+        <input type="text" name="shippingAddress" placeholder="Street Address" required>
+      </div>
+  </div>
+  <div class="three fields">
+       
+    <div class="required field">
+      <label style="font-family: 'Comfortaa', cursive;">City</label>
+      <div class="field">
+        <input type="text" name="shippingCity" placeholder="City" required>
+      </div>
+    </div>
+     
+    <div class="required field">
+       <label style="font-family: 'Comfortaa', cursive;">State</label>
+      <div class="field">
+        <input type="text" name="shippingState" placeholder="Street" required>
+      </div>
+    </div>
+      
+    <div class="required field">
+      <label style="font-family: 'Comfortaa', cursive;">Zip</label>
+      <div class="field">
+        <input type="number" name="shippingZip" placeholder="Zip" required>
+      </div>
+    </div>
+    
+  </div>
+ 
+  {{!--<div class="ui field">--}}
+  {{!-- <label>Email Address</label>--}}
+  {{!--<input type="email" name="email" required>--}}
+  {{!--</div>--}}
+  <div class="two fields">
+    <div class="required field">
+      <label style="font-family: 'Comfortaa', cursive;">Phone </label>
+      <input type="tel" name="phoneOne" placeholder="Required" required>
+    </div>
+     <div class="field">
+       <label style="font-family: 'Comfortaa', cursive;">Alternate Phone</label>
+  <input type="tel" name="phoneTwo" placeholder="optional">
+  </div>
+  </div>
+ 
+  <h2 class="ui dividing header" style="font-family: 'Comfortaa', cursive;">Receipt</h2>
+  <div class="two fields">
+      <div class="required field">
+    <label style="font-family: 'Comfortaa', cursive;">Send Receipt To:</label>
+    <input type="email" name="mailOne" placeholder="E-mail" required>
+  </div>
+     <div class="field">
+    <label style="font-family: 'Comfortaa', cursive;">Alternate Mail:</label>
+    <input type="email" name="mailTwo" placeholder="optional">
+  </div>
+  </div>
+
+  
+        {{# each products }}
+           
+           <input type="hidden" name="pName" value="{{this.productName}}">
+           <input type="hidden" name="pPrice" value="{{this.productPrice}}">
+           <input type="hidden" name="pQty" value="{{this.quantityitem}}">
+           <input type="hidden" name="pPriceTotal" value=" {{multiply this.productPrice this.quantityitem}}">
+           
+           {{/each}}
+  <button class="ui primary button" type="submit">Checkout</button>
+  <button class="ui button" type="reset">Clear</button>
+</form>
+  </div>
+  <div class="four wide column">
+    <h2>You Purchased: </h2>
+    <div class="ui card" style="background:sandybrown;">
+   {{# each products }}
+  <div class="content">
+    <div class="header" style="color:white; font-family: 'Comfortaa', cursive;" >{{this.productName}}</div>
+    <div class="meta" style="font-family: 'Comfortaa', cursive;">
+      <div class="ui medium label">
+        <span style="color:dodgerblue;">{{this.quantityitem}} pcs</span>
+      </div>
+       <div class="ui medium label">  
+         <span style="color:dodgerblue;">${{this.productPrice}}</span>
+       </div>
+       <div class="ui medium label" style="color:dodgerblue;">  
+        Total: $<span class="price" >{{multiply this.productPrice this.quantityitem}}</span>
+       </div>
+    </div>
+     {{!--Total: $<span  class="price" style="font-family: 'Comfortaa', cursive;">{{multiply this.productPrice this.quantityitem}}</span>--}}
+  </div>
+   {{/each}}
+   <div class="content">
+   <div class="header" style="color:ivory; font-family: 'Comfortaa', cursive;"> Gross Total: $<span id="price-total"></span>  
+   </div>
+     </div>
+</div>
+  </div>
+</div>
+</div>
+
+ 
+ 
+{{!-- <div class="ui card">--}}
+{{!--   {{# each products }}--}}
+{{!--  <div class="content">--}}
+{{!--    <div class="header" style="font-family: 'Comfortaa', cursive;">{{this.productName}}</div>--}}
+{{!--    <div class="meta" style="font-family: 'Comfortaa', cursive;">--}}
+{{!--      <span>{{this.quantityitem}} pcs</span>--}}
+{{!--      <span>${{this.productPrice}}</span>--}}
+{{!--    </div>--}}
+{{!--     Total: $<span class="price" style="font-family: 'Comfortaa', cursive;">{{multiply this.productPrice this.quantityitem}}</span>--}}
+{{!--  </div>--}}
+{{!--   {{/each}}--}}
+{{!--   <div class="header" style="font-family: 'Comfortaa', cursive;"> Gross Total:--}}
+{{!--    <span id="price-total">--}}
+{{!--   </span>  --}}
+{{!--   </div>--}}
+     
+{{!--</div>--}}
+ 
+                    {{!--{{this.productName}}--}}
+                    {{!--<p>{{this.productPrice}}</p>--}}
+                    {{!--<p>{{this.quantityitem}}</p>--}}
+                    {{!--<p class="price">{{multiply this.productPrice this.quantityitem}}</p>--}}
+               
+
+<div class="ui container">
+
+{{!--<div class="ui attached message">--}}
+{{!--  <div class="header" style="font-family: 'Comfortaa', cursive;">--}}
+{{!--    Checkout Section--}}
+{{!--  </div>--}}
+{{!--  <p style="font-family: 'Comfortaa', cursive;">Fill out the form below to checkout</p>--}}
+{{!--</div>--}}
+{{!--<form class="ui form attached fluid segment large" method="POST" action="/shopping-cart/send/final">--}}
+{{!--    <h2 class="ui dividing header" style="font-family: 'Comfortaa', cursive;">Shipping Information</h2>--}}
+{{!--  <div class="two fields">--}}
+{{!--    <div class="required field">--}}
+{{!--      <label style="font-family: 'Comfortaa', cursive;">Name</label>--}}
+{{!--     <input type="text" name="name" placeholder="Full name"required>--}}
+{{!--    </div>--}}
+{{!--     <div class="required field">--}}
+{{!--      <label style="font-family: 'Comfortaa', cursive;">Company</label>--}}
+{{!--      <input type="text" name="company" required>--}}
+{{!--  </div>--}}
+{{!--  </div>--}}
+{{!--  <div class="required field">--}}
+{{!--    <label style="font-family: 'Comfortaa', cursive;">Billing Address</label>--}}
+{{!--      <div class="twelve wide field">--}}
+{{!--        <input type="text" name="shippingAddress" placeholder="Street Address" required>--}}
+{{!--      </div>--}}
+{{!--  </div>--}}
+{{!--  <div class="three fields">--}}
+       
+{{!--    <div class="required field">--}}
+{{!--      <label style="font-family: 'Comfortaa', cursive;">City</label>--}}
+{{!--      <div class="field">--}}
+{{!--        <input type="text" name="shippingCity" placeholder="City" required>--}}
+{{!--      </div>--}}
+{{!--    </div>--}}
+     
+{{!--    <div class="required field">--}}
+{{!--       <label style="font-family: 'Comfortaa', cursive;">State</label>--}}
+{{!--      <div class="field">--}}
+{{!--        <input type="text" name="shippingState" placeholder="Street" required>--}}
+{{!--      </div>--}}
+{{!--    </div>--}}
+      
+{{!--    <div class="required field">--}}
+{{!--      <label style="font-family: 'Comfortaa', cursive;">Zip</label>--}}
+{{!--      <div class="field">--}}
+{{!--        <input type="number" name="shippingZip" placeholder="Zip" required>--}}
+{{!--      </div>--}}
+{{!--    </div>--}}
+    
+{{!--  </div>--}}
+ 
+  {{!--<div class="ui field">--}}
+  {{!-- <label>Email Address</label>--}}
+  {{!--<input type="email" name="email" required>--}}
+  {{!--</div>--}}
+{{!--  <div class="two fields">--}}
+{{!--    <div class="required field">--}}
+{{!--      <label style="font-family: 'Comfortaa', cursive;">Phone </label>--}}
+{{!--      <input type="tel" name="phoneOne" placeholder="Required" required>--}}
+{{!--    </div>--}}
+{{!--     <div class="field">--}}
+{{!--       <label style="font-family: 'Comfortaa', cursive;">Alternate Phone</label>--}}
+{{!--  <input type="tel" name="phoneTwo" placeholder="optional">--}}
+{{!--  </div>--}}
+{{!--  </div>--}}
+ 
+{{!--  <h2 class="ui dividing header" style="font-family: 'Comfortaa', cursive;">Receipt</h2>--}}
+{{!--  <div class="two fields">--}}
+{{!--      <div class="required field">--}}
+{{!--    <label style="font-family: 'Comfortaa', cursive;">Send Receipt To:</label>--}}
+{{!--    <input type="email" name="mailOne" placeholder="E-mail" required>--}}
+{{!--  </div>--}}
+{{!--     <div class="field">--}}
+{{!--    <label style="font-family: 'Comfortaa', cursive;">Alternate Mail:</label>--}}
+{{!--    <input type="email" name="mailTwo" placeholder="optional">--}}
+{{!--  </div>--}}
+{{!--  </div>--}}
+
+  
+{{!--        {{# each products }}--}}
+           
+{{!--           <input type="hidden" name="pName" value="{{this.productName}}">--}}
+{{!--           <input type="hidden" name="pPrice" value="{{this.productPrice}}">--}}
+{{!--           <input type="hidden" name="pQty" value="{{this.quantityitem}}">--}}
+{{!--           <input type="hidden" name="pPriceTotal" value=" {{multiply this.productPrice this.quantityitem}}">--}}
+           
+{{!--           {{/each}}--}}
+{{!--  <button class="ui primary button" type="submit">Checkout</button>--}}
+{{!--</form>--}}
+  
+</div>
+
+{{!--<div class="container">--}}
+   
+{{!--    <div class="wrapper animated bounceInLeft">--}}
+      {{!--<div class="company-info">--}}
+      {{!--  <h3>Best Promo Shop</h3>--}}
+      {{!--  <ul>--}}
+      {{!--    <li><i class="fa fa-road"></i> 44 Something st</li>--}}
+      {{!--    <li><i class="fa fa-phone"></i> (555) 555-5555</li>--}}
+      {{!--    <li><i class="fa fa-envelope"></i> test@acme.test</li>--}}
+      {{!--  </ul>--}}
+      {{!--</div>--}}
+{{!--      <div class="contact">--}}
+{{!--        <h3>Place Order</h3>--}}
+{{!--        {{msg}}--}}
+{{!--        <form method="POST" action="/shopping-cart/send/final">--}}
+{{!--          <p>--}}
+{{!--            <label>Name</label>--}}
+{{!--            <input type="text" name="name" required>--}}
+{{!--          </p>--}}
+{{!--          <p>--}}
+{{!--            <label>Company</label>--}}
+{{!--            <input type="text" name="company" required>--}}
+{{!--          </p>--}}
+{{!--          <p>--}}
+{{!--            <label>Email Address</label>--}}
+{{!--            <input type="email" name="email" required>--}}
+{{!--          </p>--}}
+{{!--          <p>--}}
+{{!--            <label>Phone Number</label>--}}
+{{!--            <input type="tel" name="phone" required>--}}
+{{!--          </p>--}}
+          {{!--<p>--}}
+          {{!--  <label>Enter Quantity</label>--}}
+          {{!--  <input type="number" name="quantity">--}}
+          {{!--</p>--}}
+           {{!--<input type="hidden" id="logoUrl" name="logo-Url" value="">--}}
+{{!--           {{# each products }}--}}
+           
+{{!--           <input type="hidden" name="pName" value="{{this.productName}}">--}}
+{{!--           <input type="hidden" name="pPrice" value="{{this.productPrice}}">--}}
+{{!--           <input type="hidden" name="pQty" value="{{this.quantityitem}}">--}}
+{{!--           <input type="hidden" name="pPriceTotal" value=" {{multiply this.productPrice this.quantityitem}}">--}}
+           
+{{!--           {{/each}}--}}
+{{!--          <p class="full">--}}
+{{!--            <label>Message</label>--}}
+{{!--            <textarea name="message" rows="5"></textarea>--}}
+{{!--          </p>--}}
+{{!--          <p class="full">--}}
+{{!--            <button type="submit">Order</button>--}}
+{{!--          </p>--}}
+{{!--        </form>--}}
+{{!--      </div>--}}
+{{!--    </div>--}}
+{{!--  </div>--}}
+
+
+
+{{!--{{#each products}}--}}
+{{!--    {{totalP this.productPrice this.quantityitem}}--}}
+{{!--{{/each}}--}}
+
+<script>
+ var array1 =[];
+  var sum=0;
+  var elems = document.getElementsByClassName('price');
+for(var i=0;i<elems.length;i++){
+console.log(elems[i].textContent)
+var val = elems[i].textContent;
+array1.push(parseInt(val));
+}
+array1.map(function(val){
+	sum = sum + val;
+})
+document.getElementById('price-total').innerHTML = sum;
+//   elems.map(val => console.log(val))
+//   array1.push(elems.textContent);
+//   console.log(array1);
+//   const map2 = array1.map(function(num){
+//   var k= sum=sum+num;
+//   console.log("k:",k);
+// });
+// console.log("map2:",map2);
+</script>
+
+ 
+
+
+
+
+
+                
+{{ else }}
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <h2>No Item in Cart</h2>
+            <p><h3>Please add some item.</h3></p>
+            <a href='/'>Go to Home Page</a>
+        </div>
+    </div>
+{{/if}}                
+{{!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>--}}
+{{!--<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>--}}
+<script>
+    
+//       Handlebars.registerHelper("multiply", function(thing1, thing2) {
+//   return thing1*thing2;
+// });
+      
+</script>
+
+</body>
+</html>
