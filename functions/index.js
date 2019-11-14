@@ -224,6 +224,17 @@ appSeven.get('/add-to-cart/:idp', function(req, res){
      return res.locals.session = req.session;
 });
 
+appSeven.get('/shopping-cart', function(req, res) {
+    console.log("step 4, shopping-cart url");
+    var cart = new Cart(req.session.cart); 
+    if(!req.session.cart){
+        console.log("session at 529:", req.session.cart);
+      return res.render('cart2' ,{products:null});
+  } 
+  console.log("session 532",req.session.cart);
+  res.render('cart2', {products: cart.generateArray(), totalPrice: cart.totalPrice} ); 
+});
+
 appSeven.get('/remove/:idtitle',function(req,res){
        var productTitle = req.params.idtitle;
     var ref = firebaseApp.database().ref('products');
