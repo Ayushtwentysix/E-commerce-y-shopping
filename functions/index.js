@@ -177,5 +177,31 @@ appSeven.post("/signup/auth",(req,res)=>{
 });
 })
 
+appSeven.get("/auth/auth-shopping-cart", (req,res) => {   
+  if (req.session.user){
+      if(req.session.count === 0 ){
+          var userAuth = firebaseApp_web.auth().currentUser;
+          req.session.userAuth = JSON.stringify(userAuth);
+          req.session.count++;
+          res.locals.session = req.session;
+      }
+  
+      var userSession = req.session.user ? req.session.user : JSON.stringify({"user":{"uid":"1"} }) ; 
+      var userAuthjson = req.session.userAuth;
+      console.log("userAuthjson(388)---", userAuthjson);
+      if(JSON.parse(userSession).user.uid === JSON.parse(userAuthjson).uid){
+  console.log("redirected to Cart");
+        res.redirect('/shopping-cart');
+  }
+      else {
+          console.log("redirected to login url");
+    res.redirect("/auth/login");
+      }
+  } else {
+      console.log("redirected to login url");
+    res.redirect("/auth/login");
+  }
+});
+
 exports.app = functions.https.onRequest(app);
 exports.appFour = functions.https.onRequest(appFour);
