@@ -234,7 +234,7 @@ appSeven.get('/remove/:idtitle',function(req,res){
             console.log("error",err);
             return res.redirect('/');
         }
-        else{
+
             console.log("Products to reduceByOne",snap.val());
             var productid= snap.key;
            cart.removeItem(productid);
@@ -243,6 +243,30 @@ appSeven.get('/remove/:idtitle',function(req,res){
         return null;
         }     
     });        
+});
+
+const appTwo = express();
+appTwo.use(bodyParser.urlencoded({extended: true}));
+appTwo.use(bodyParser.json());
+appTwo.engine('hbs', engines.handlebars);
+appTwo.set('views','./views');
+appTwo.set('view engine', 'hbs');
+appTwo.enable('view cache')
+
+appTwo.get("/select/:pname",(request, response) =>{
+     var ref = firebaseApp.database().ref('products');
+    var pname = request.params.pname;
+    ref.orderByChild('title').equalTo(pname).on('child_added',function(snap,err){
+        if(err){
+            console.log("error",err);
+        }
+        else {
+            var fact = snap.val();
+        console.log(fact);
+        response.render('productDetails',{fact});
+        return null;
+        }        
+    });    
 });
 
 exports.app = functions.https.onRequest(app);
