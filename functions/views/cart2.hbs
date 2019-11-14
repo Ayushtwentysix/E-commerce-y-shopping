@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shopping Cart</title>
+	<meta charset="utf-8">
+  
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700" rel="stylesheet">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+
+     <style type="text/css">
+.nav-wrapper  {
+    background-color: white !important;
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+</style> 
+    <style>
+    
+    
+      #uploader {
+        appearance: none;
+        width: 50%;
+        margin-bottom: 10px;
+    }
+    
+    
+    *{
+  box-sizing: border-box;
+}
+
+body{
+  color:#485e74;
+  line-height:1.6;
+  font-family: 'Comfortaa', cursive;
+  padding:1em;
+}
+
+.container{
+  max-width:1170px;
+  margin-left:auto;
+  margin-right:auto;
+  padding:1em;
+}
+
+ul{
+  list-style: none;
+  padding:0;
+}
+
+.brand{
+  text-align: center;
+}
+
+.brand span{
+  color:#fff;
+}
+
+.wrapper{
+  box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+}
+
+.wrapper > *{
+  padding: 1em;
+}
+
+.company-info{
+  background:#c9e6ff;
+}
+
+.company-info h3, .company-info ul{
+  text-align: center;
+  margin:0 0 1rem 0;
+}
+
+.contact{
+  background:#f9feff;
+}
+
+/* FORM STYLES */
+.contact form{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap:20px;
+}
+
+.contact form label{
+  display:block;
+}
+
+.contact form p{
+  margin:0;
+}
+
+.contact form .full{
+  grid-column: 1 / 3;
+}
+
+.contact form button, .contact form input, .contact form textarea{
+  width:100%;
+  padding:1em;
+  border:1px solid #c9e6ff;
+}
+
+.contact form button{
+  background:#c9e6ff;
+  border:0;
+  text-transform: uppercase;
+}
+
+.contact form button:hover,.contact form button:focus{
+  background:#92bde7;
+  color:#fff;
+  outline:0;
+  transition: background-color 2s ease-out;
+}
+
+/* LARGE SCREENS */
+@media(min-width:700px){
+  .wrapper{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .wrapper > *{
+    padding:2em;
+  }
+
+  .company-info h3, .company-info ul, .brand{
+    text-align: left;
+  }
+}
+    
+      
+  </style>
+  </head>
+<body>
+    
+  
+<nav class="nav-extended  z-depth-0">
+    <div class="nav-wrapper"  style="padding-bottom: 100px;">
+        <div id="logo">
+                  <a href="#" class="center brand-logo"  style="color: black; margin-top: 25px;">{{fact.title}}</a>
+        </div>
+      <a href="#" data-activates="mobile-demo" class="button-collapse" style="margin-top: 25px;"><i class="material-icons large cyan-text text-darken-4">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right:110px;">
+        <li><a href="/contact_us" style="color: black; margin-top: 25px;">Contact Us</a></li>
+        <li><a href="/about_us" style="color: black; margin-top: 25px;">About Us</a></li>
+        
+        
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li class="active"><a href="/shopping-cart">Cart</a></li>
+        <li><a href="/contact_us">Contact Us</a></li>
+        <li><a href="/about_us">About Us</a></li>
+      </ul>
+    </div>
+</nav>    
+<script>
+$(".button-collapse").sideNav();
+</script> 
+{{# if products }}
+<div class="ui container">
+<div class="ui three steps">
+  <div class="active step">
+    <i class="edit icon"></i>
+    <div class="content">
+      <div class="title" style="font-family: 'Comfortaa', cursive;">Quantity Details</div>
+      <div class="description" style="font-family: 'Comfortaa', cursive;">Enter Quantity for products</div>
+    </div>
+  </div>
+  <div class="disabled step">
+    <i class="payment icon"></i>
+    <div class="content">
+      <div class="title" style="font-family: 'Comfortaa', cursive;">Billing & Confirmation</div>
+            <div class="description" style="font-family: 'Comfortaa', cursive;">Enter billing information</div>
+    </div>
+  </div>
+  <div class="disabled step">
+    <i class="envelope icon"></i>
+    <div class="content">
+      <div class="title" style="font-family: 'Comfortaa', cursive;">Check Mail</div>
+      <div class="description" style="font-family: 'Comfortaa', cursive;">See mail inbox for receipt</div>
+    </div>
+  </div>
+</div>
+  
+
+
+  <div class="ui icon positive message">
+    <div class="ui centered statistic">
+    <div class="value"  style="color:lightseagreen;">
+      <i class="shop icon"></i> 100+
+    </div>
+    <div class="label"  style="color:orange; font-family: 'Comfortaa', cursive;">
+      Items Available
+    </div>
+  </div>
+  <div class="content">
+    <div class="header">
+      <center style="font-size:1.6em; color:crimson; font-family: 'Comfortaa', cursive;">Interested in more items?</center>
+    </div>
+          <a href="/" class="ui animated fade huge right floated button" tabindex="0" style="margin-top:20px; color:green;">
+  <div class="visible content" style="font-family: 'Comfortaa', cursive;">Shop Now</div>
+  <div class="hidden content">
+    <i class="shop icon"></i>
+  </div>
+</a>
+  </div>
+</div>
+
+<h1 style="color:deeppink; font-family: 'Comfortaa', cursive;">Shopping Cart</h1>
+  <div class="ui segment">
+  <div class="ui stackable fluid one column grid">
+
+  <div class="column">
+        
+        
+
+        <form method="POST" action="/shopping-cart/send"  enctype='application/json'>
+        
+          <div class="ui divided items">
+             {{# each products }}
+    <div class="item">
+    <div class="content">
+      <a href="/select/{{this.item.title}}" class="header" style="font-size:1.3em; font-family: 'Comfortaa', cursive;">{{this.item.title}}</a>
+      <div class="meta">
+        <span style="font-family: 'Comfortaa', cursive;">Price: ${{this.price}}</span>
+      </div>
+      <div class="description">
+    <div class="ui input">
+            <input type="number" name="products[{{@index}}][quantityitem]" id="qtyid" placeholder="Min 1 qty" min="1" max="400"  onkeypress="return isNumberKey(event)" required/>
+      <script type="text/javascript">
+              function isNumberKey(evt)
+                {
+                  var charCode = (evt.which) ? evt.which : event.keyCode;
+                return !(charCode > 31 && (charCode < 48 || charCode > 57));
+                    }
+    </script>
+    <input type="hidden" name="products[{{@index}}][productName]" value="{{this.item.title}}">
+            <input type="hidden" name="products[{{@index}}][productPrice]" value="{{this.price}}">
+  <div class="ui basic centered label">
+    Items
+  </div>
+
+</div>
+      </div>
+      <div class="extra">
+         <a href="/remove/{{this.item.title}}" class="ui animated fade large floated button" tabindex="0" style="margin-top:10px; color: red;">
+  <div class="visible content"> <i class="material-icons">delete</i></div>
+  <div class="hidden content" style="font-family: 'Comfortaa', cursive;">
+    Remove
+    </div>
+  </a>
+</div>
+      </div>
+    </div>
+      {{/each}}
+  </div>
+  
+{{!--<div class="ui animated fade button" tabindex="0" type="submit">--}}
+{{!--  <div class="visible content">Proceed</div>--}}
+{{!--  <div class="hidden content">--}}
+{{!--   <i class="right arrow icon"></i>--}}
+{{!--  </div>--}}
+{{!--</div>--}}
+<button class="ui primary button" type="submit" style="font-family: 'Comfortaa', cursive;">
+  Proceed
+</button>
+<button class="ui button" type="reset" style="font-family: 'Comfortaa', cursive;" >
+  Clear
+</button>
+</form> 
+
+
+</div>
+
+
+  </div>
+</div>
+
+</div> 
+    
+      
+    
+    
+    
+    
+    
+    
+{{ else }}
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <h2>No Item in Cart</h2>
+            <p><h3>Please add some item.</h3></p>
+            <a href='/'>Go to Home Page</a>
+        </div>
+    </div>
+{{/if}}
+
+
+
+
+
+
+
+</body>
+</html>
+
