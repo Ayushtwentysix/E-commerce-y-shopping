@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Sign Page</title>
+</head>
+<body>
+    <h1>Welcome to SignUp page</h1>
+
+{{# if error}}
+<h3 style="color:orange">{{error}}</h3>
+{{/if}}
+
+<div>
+    <form method="POST" action="/signUp/auth">  
+    <label>Name:</label>
+    <input type="text" name="UserName">
+    <label>Email:</label>
+    <input type="email" name="email">
+    <label>Password:</label>
+    <input type="password" name="password"></input>
+    <button type="submit">Submit</button>
+    </form>
+</div>
+
+<h2><a href="/auth/login">Login now!</a></h2>
+
+</body>
+</html>
+
+
