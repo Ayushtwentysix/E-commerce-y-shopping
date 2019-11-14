@@ -203,5 +203,26 @@ appSeven.get("/auth/auth-shopping-cart", (req,res) => {
   }
 });
 
+appSeven.get('/add-to-cart/:idp', function(req, res){
+    var productTitle = req.params.idp;
+    var ref = firebaseApp.database().ref('products');
+    var cart = new Cart(req.session.cart ? req.session.cart : {}); 
+     ref.orderByChild('title').equalTo(productTitle).on('child_added',function(snap,err){
+        if(err){
+            console.log("error",err);
+            return res.redirect('/');
+        }
+        else{
+            console.log("Products from session",snap.val());
+         cart.add(snap.val(), snap.key);
+        req.session.cart = cart;
+        console.log(req.session.cart);
+        res.redirect('/auth/auth-shopping-cart');
+        return null;
+        }     
+    });
+     return res.locals.session = req.session;
+});
+
 exports.app = functions.https.onRequest(app);
 exports.appFour = functions.https.onRequest(appFour);
