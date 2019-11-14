@@ -287,6 +287,132 @@ appSix.post('/shopping-cart/send',(req,res) => {
     }});
 });
 
+const appEight = express();
+appEight.use(bodyParser.urlencoded({extended: true}));
+appEight.use(bodyParser.json());
+appEight.engine('hbs', engines.handlebars);
+appEight.set('views','./views');
+appEight.set('view engine', 'hbs');
+
+var nodemailer = require('nodemailer');
+
+appEight.post('/shopping-cart/send/final',(req,res) =>{
+ 
+        if(typeof(req.body.pName)==='string'){
+        content1 = '<td style=" border: 1px solid black; border-collapse: collapse;">'+req.body.pName+'</td>';
+    }
+    else {
+          var content1 = req.body.pName.reduce(function(a,b){
+        return a + '<td style=" border: 1px solid black; border-collapse: collapse;">'+b+'</td>';
+    },'');
+    }
+    
+        if(typeof(req.body.pPrice)==='string'){
+        content2 = '<td style=" border: 1px solid black; border-collapse: collapse;">$'+req.body.pPrice+'</td>';
+    }
+    else {
+          var content2 = req.body.pPrice.reduce(function(a,b){
+        return a + '<td style=" border: 1px solid black; border-collapse: collapse;">$'+b+'</td>';
+    },'');
+    }
+    
+          if(typeof(req.body.pQty)==='string'){
+        content3 = '<td style=" border: 1px solid black; border-collapse: collapse;">'+req.body.pQty+'</td>';
+    }
+    else {
+          var content3 = req.body.pQty.reduce(function(a,b){
+        return a + '<td style=" border: 1px solid black; border-collapse: collapse;">'+b+'</td>';
+    },'');
+    }
+    
+           if(typeof(req.body.pPriceTotal)==='string'){
+        content4 = '<td style=" border: 1px solid black; border-collapse: collapse;">$'+req.body.pPriceTotal+'</td>';
+    }
+    else {
+          var content4 = req.body.pPriceTotal.reduce(function(a,b){
+        return a + '<td style=" border: 1px solid black; border-collapse: collapse;">$'+b+'</td>';
+    },'');
+    }
+    
+             if(typeof(req.body.pPriceTotal)==='string'){
+        content5 = req.body.pPriceTotal;
+    }
+    else {
+          var content5 = req.body.pPriceTotal.reduce(function(a,b){
+        return parseInt(a, 10) + parseInt(b, 10);
+    },0);
+    }
+    
+     const output2 = `$${content5}`;      
+    var transporter = nodemailer.createTransport({
+ service: 'gmail',
+ secure: true,
+ auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
+    }
+});
+
+var datetime = new Date();
+ var newReceipt = firebase.database().ref("Internal-Receipt").push();
+     newReceipt.set({
+    name: req.body.name,
+    email: req.body.mailOne,
+    ShippingAddress : req.body.shippingAddress,
+    ShippingCity: req.body.shippingCity,
+    ShippingState: req.body.shippingState,
+    ShippingZip: req.body.shippingZip,
+    MainPhone: req.body.phoneOne,
+    Company: req.body.company,
+    Products: req.body.pName,
+    GrossTotal: content5,
+    OrderDate: datetime.toISOString().slice(0,10),
+    OrderTime: datetime.toISOString().slice(11,19)
+  }, function(error) {
+    if (error) {
+      res.send("Some error occured !"+error);
+      newReceipt.remove();
+    } else {
+         console.log("Order Placed successfully,key is:"+newReceipt.key);
+       var subjectname= `Receipt From WholeSale Website`;
+
+
+       
+       const output = `
+    <h3>Receipt ID: ${newReceipt.key}</h3>
+    <h3>Shipping Details:</h3>
+
+    <ul>
+    <li><strong>Name</strong>: ${req.body.name} </li>
+    <li><strong>Company</strong>: ${req.body.company} </li>
+    <li><strong>Address</strong>: ${req.body.shippingAddress} </li>
+    <li><strong>City</strong>: ${req.body.shippingCity} </li>
+    <li><strong>State</strong>: ${req.body.shippingState} </li>
+    <li><strong>Zip</strong>: ${req.body.shippingZip} </li>
+    <li><strong>Phone</strong>: ${req.body.phoneOne} </li>
+  
+    </ul>
+    `;    
+       
+       const mailOptions = {
+  from: 'gupta.ayush1997@gmail.com', // sender address
+  to: req.body.mailOne, // list of receivers
+  subject: subjectname, // Subject line
+     html: output+'<p><h3>Product Details</h3><p/>'+'<div><table style=" width:75%; border: 1px solid black; border-collapse: collapse;"><tbody><tr style=" border: 1px solid black; border-collapse: collapse;"><td style=" border: 1px solid black; border-collapse: collapse;"><strong>Product:</strong></td>'+content1+'</tr><tr style=" border: 1px solid black; border-collapse: collapse;"><td style=" border: 1px solid black; border-collapse: collapse;"><strong>Price/Item:</strong></td>'+content2+'</tr><tr style=" border: 1px solid black; border-collapse: collapse;"><td style=" border: 1px solid black; border-collapse: collapse;"><strong>Qty:</strong></td>'+content3+'</tr><tr style=" border: 1px solid black; border-collapse: collapse;"><td style=" border: 1px solid black; border-collapse: collapse;"><strong>Total:</strong></td>'+content4+'</tr></tr><tr style=" border: 1px solid black; border-collapse: collapse;"><td style=" border: 1px solid black; border-collapse: collapse;"><strong>Gross Total:</strong></td><td style=" border: 1px solid black; border-collapse: collapse;">'+output2+'</td></tr></tbody></table>'// plain text body
+
+};
+      transporter.sendMail(mailOptions, function (err, info) {
+        if(err)
+         console.log(err)
+         else
+          console.log(info);
+});
+var finalEmail= (req.body.mailOne);
+res.redirect('/checkMail/'+finalEmail);
+    }
+  });
+});
+
 exports.app = functions.https.onRequest(app);
 exports.appFour = functions.https.onRequest(appFour);
 exports.appSeven = functions.https.onRequest(appSeven);
