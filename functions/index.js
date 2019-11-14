@@ -247,3 +247,5 @@ appSeven.get('/remove/:idtitle',function(req,res){
 
 exports.app = functions.https.onRequest(app);
 exports.appFour = functions.https.onRequest(appFour);
+exports.appSeven = functions.https.onRequest(appSeven);
+
