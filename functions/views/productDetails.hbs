@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{Testing}}</title>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async></script>  -->
+  
+
+
+</head>
+<body>
+
+  <nav class="nav-extended  z-depth-0">
+   <div class="nav-wrapper"  style="padding-bottom: 100px;">
+        <div id="logo">
+                 <!-- <a href="#" class="center brand-logo"  style="color: black; margin-top: 25px;">{{fact.title}}</a> -->
+        </div>
+     <a href="#" data-activates="mobile-demo" class="button-collapse" style="margin-top: 25px;"><i class="material-icons large cyan-text text-darken-4">menu</i></a>
+     <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right:110px;">
+       <li><a href="/contact_us" style="color: black; margin-top: 25px;">Contact Us</a></li>
+      <li><a href="/about_us" style="color: black; margin-top: 25px;">About Us</a></li>
+        
+        
+    </ul>
+     <ul class="side-nav" id="mobile-demo">
+       <li class="active"><a href="/shopping-cart">Cart</a></li>
+       <li><a href="/contact_us">Contact Us</a></li>
+       <li><a href="/about_us">About Us</a></li>
+     </ul>
+   </div>
+</nav>
+
+<script>
+$(".button-collapse").sideNav();
+</script>
+
+<div class="container">
+<div class="ui stackable two column centered grid">
+   
+     
+     
+   <div class="column">
+    <div class="ui items">
+ 
+ <div class="item" style="margin-top:50px;">
+    <div class="ui circular image">
+      <img src="{{fact.img}}">
+   </div>
+   <div class="content">
+     <div class="header">
+       <div class="ui tag labels">
+	   <h2>{{fact.title}}</h2>
+         <span class="ui label">${{fact.price}}</span>
+        </div>
+       </div>
+      <div class="meta">
+       <span>{{fact.body}}</span>
+</div>
+     
+   </div>
+  </div>
+      
+     <div class="ui-card">
+<div class="ui fluid card">
+    <div class="ui centered image">
+    <img style="max-width:100%; max-height:100%;"src="{{fact.img}}">
+   </div>
+
+<div class="content">
+   <div class="header"><bold>{{fact.title}}</bold></div>
+    <div class="meta">
+    <span class="category">{{fact.body}}</span>
+   </div>
+    <div class="description">
+     <p>Price: ${{fact.price}}</p>
+      
+  </div>
+  </div>
+</div>
+</div>
+
+<a href="/list/add-to-cart/{{fact.title}}" class="ui animated fade fluid teal massive button" tabindex="0" style="margin-top:43px;">
+  <div class="visible content"><i class="cart plus icon"></i></div>
+  <div class="hidden content">
+   Add to Cart
+  </div>
+</a>
+
+  </div>
+</div>
+</div>
+</div>
+
+<div class="fixed-action-btn toolbar">
+    <a class="btn-floating pulse btn-large red">
+   <i class="material-icons">shopping_cart</i>
+</a>
+<ul>
+<li class="waves-effect waves-light"><a href="/shopping-cart" ><i class="material-icons"></i><span id="book"><strong style="font-family: 'Montserrat', sans-serif;">Visit Cart</strong></span></a></li>  
+   </ul>
+  </div>
+
+{{!--<h1></h1>--}}
+
+{{!--<h2>Category : </h2>--}}
+{{!--<h3>Price: </h3>--}}
+
+{{!--<button class="ui big button"> <a href="/categories/clothing/T-shirts">T-Shirts</a> </button>--}}
+
+ {{!--<div class="ui centered card">--}}
+ {{!--   <div class="content">--}}
+ {{!--     <div class="header">Personalize</div>--}}
+ {{!--     <div class="description">--}}
+ {{!--       Choose a Logo to upload--}}
+ {{!--     </div>--}}
+ {{!--     <div>--}}
+ {{!--     </div>--}}
+ {{!--     <div>--}}
+ {{!--     </div>--}}
+ {{!--   </div>--}}
+ {{!-- </div>--}}
+<!-- <img id="myimg"></img> -->
+         <!-- <progress value="0" max="100" id="uploader">0%</progress> -->
+        <!-- <input type="file" value="upload" id="fileButton" multiple/> -->
+        
+<!-- <form action="/upload" method="POST"> -->
+  {{!--<label>Enter name</label>--}}
+  {{!--      <input type="text" placeholder="enter name..." name="name" />--}}
+        
+        <!-- <label>Image Type</label> -->
+<!-- <input list="items" name="item" /> -->
+  <!-- <datalist id="items"> -->
+    <!-- <option value="earring"> -->
+    <!-- <option value="neckLace"> -->
+    <!-- <option value="hat"> -->
+    <!-- <option value="tshirt"> -->
+    <!-- <option value="pant"> -->
+  <!-- </datalist> -->
+  
+        <!-- <label>BodyPart</label> -->
+       <!-- <input list="BodyPart" name="BodyPart" /> -->
+  <!-- <datalist id="BodyPart"> -->
+    <!-- <option value="head"> -->
+    <!-- <option value="body"> -->
+    <!-- <option value="legs"> -->
+  <!-- </datalist>  -->
+  
+  
+  <!-- <label>ImageScale</label> -->
+  <!-- <input type="number" name="ImageScale" /> -->
+  
+  <!-- <label>Size factor</label> -->
+  <!-- <input  type="number" step="any" min="0" /> -->
+  
+  <!-- <input type="text" hidden id="url" name="url"/> -->
+
+  
+<!-- <button type="submit">Submit</button>  -->
+<!-- </form> -->
+
+
+
+
+{{!--<div class="container">--}}
+{{!--    <h1 class="brand"><span>Walmart</span> Promo</h1>--}}
+{{!--    <div class="wrapper animated bounceInLeft">--}}
+{{!--      <div class="company-info">--}}
+{{!--        <h3>Best Promo Shop</h3>--}}
+{{!--        <ul>--}}
+{{!--          <li><i class="fa fa-road"></i> 44 Something st</li>--}}
+{{!--          <li><i class="fa fa-phone"></i> (555) 555-5555</li>--}}
+{{!--          <li><i class="fa fa-envelope"></i> test@acme.test</li>--}}
+{{!--        </ul>--}}
+{{!--      </div>--}}
+{{!--      <div class="contact">--}}
+{{!--        <h3>Email Us</h3>--}}
+{{!--        {{msg}}--}}
+{{!--        <form method="POST" action="/select/:pname/send">--}}
+{{!--          <p>--}}
+{{!--            <label>Name</label>--}}
+{{!--            <input type="text" name="name">--}}
+{{!--          </p>--}}
+{{!--          <p>--}}
+{{!--            <label>Company</label>--}}
+{{!--            <input type="text" name="company">--}}
+{{!--          </p>--}}
+{{!--          <p>--}}
+{{!--            <label>Email Address</label>--}}
+{{!--            <input type="email" name="email">--}}
+{{!--          </p>--}}
+{{!--          <p>--}}
+{{!--            <label>Phone Number</label>--}}
+{{!--            <input type="text" name="phone">--}}
+{{!--          </p>--}}
+{{!--          <p>--}}
+{{!--            <label>Enter Quantity</label>--}}
+{{!--            <input type="number" name="quantity">--}}
+{{!--          </p>--}}
+{{!--           <input type="hidden" id="logoUrl" name="logo-Url" value="">--}}
+{{!--          <p class="full">--}}
+{{!--            <label>Message</label>--}}
+{{!--            <textarea name="message" rows="5"></textarea>--}}
+{{!--          </p>--}}
+{{!--          <p class="full">--}}
+{{!--            <button type="submit">Submit</button>--}}
+{{!--          </p>--}}
+{{!--        </form>--}}
+{{!--      </div>--}}
+{{!--    </div>--}}
+{{!--  </div>--}}
+
+
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+<script>
+    var config = {
+    apiKey: "AIzaSyA4TPdvFAbqie_t0s038Sqp4CJhRbltL8Y",
+    authDomain: "y-shopping.firebaseapp.com",
+    databaseURL: "https://y-shopping.firebaseio.com",
+    projectId: "y-shopping",
+    storageBucket: "y-shopping.appspot.com",
+    messagingSenderId: "911282489225"
+  };
+  firebase.initializeApp(config);
+  
+  
+    var uploader = document.getElementById('uploader');
+    var fileButton = document.getElementById('fileButton');
+    
+    fileButton.addEventListener('change', function(e){ 
+    //Get files
+    for (var i = 0; i < e.target.files.length; i++) {
+        var imageFile = e.target.files[i];
+
+        uploadImageAsPromise(imageFile);
+    }
+});
+
+//Handle waiting to upload each file using promise
+function uploadImageAsPromise (imageFile) {
+    return new Promise(function (resolve, reject) {
+        var storageRef = firebase.storage().ref('multiple_uploads/'+imageFile.name);
+
+        //Upload file
+        var task = storageRef.put(imageFile);
+
+        //Update progress bar
+        task.on('state_changed',
+            function progress(snapshot){
+                var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+                uploader.value = percentage;
+            },
+            function error(err){
+
+            },
+            function complete(){
+                
+                // for(var j=0 ;j<task.snapshot.length;j++){
+                  var storageRef = firebase.storage().ref('multiple_uploads/'+imageFile.name);
+                  var task = storageRef.put(imageFile);
+                  
+                        task.snapshot.ref.getDownloadURL().then(function(url) {
+                    
+          var img = document.getElementById('myimg');
+  img.src = url;
+  console.log("URL",url);
+  document.getElementById('url').value = url;
+}).catch(function(error) {
+  console.log("error",error);
+  
+});
+                // }
+            }
+        );
+    });
+}
+    
+    
+    
+    
+    
+    
+//     fileButton.addEventListener('change',function(e){
+        
+//         var file = e.target.files[0];
+//         var storageRef = firebase.storage().ref('sweet_gifs/'+file.name);
+//         var fileName  = file.name;
+//         storageRef.put(file);
+        
+//         var task = storageRef.put(file);
+//         task.on('state_changed',
+        
+//         function progress(snapshot){
+//             var percentage = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
+//             uploader.value = percentage;
+//         },
+        
+//         function error(err){
+            
+            
+//         },
+        
+//         function complete(){
+//             var storageRef2 = firebase.storage().ref('sweet_gifs/'+fileName);
+        
+//         storageRef2.getDownloadURL().then(function(url) {
+            
+//           var img = document.getElementById('myimg');
+//   img.src = url;
+// }).catch(function(error) {
+//   // Handle any errors
+// });
+//         }
+//         )
+        
+//     })    
+  
+  
+</script>
+
+
+
+
+
+
+</body>
+</html>
