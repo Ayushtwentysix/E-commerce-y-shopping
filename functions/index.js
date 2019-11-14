@@ -269,6 +269,24 @@ appTwo.get("/select/:pname",(request, response) =>{
     });    
 });
 
+const appSix = express();
+appSix.use(bodyParser.urlencoded({extended: true}));
+appSix.use(bodyParser.json());
+appSix.engine('hbs', engines.handlebars);
+appSix.set('views','./views');
+appSix.set('view engine', 'hbs');
+
+appSix.post('/shopping-cart/send',(req,res) => {
+    var array1 = [];
+  var sum=0
+    console.log("type:",typeof(req.body));
+             console.log("req.body:",req.body);
+    res.render("checkout.hbs",{products: req.body.products ,  
+    helpers:{
+        multiply: function(thing1, thing2){  return thing1*thing2; }
+    }});
+});
+
 exports.app = functions.https.onRequest(app);
 exports.appFour = functions.https.onRequest(appFour);
 exports.appSeven = functions.https.onRequest(appSeven);
