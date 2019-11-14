@@ -224,5 +224,26 @@ appSeven.get('/add-to-cart/:idp', function(req, res){
      return res.locals.session = req.session;
 });
 
+appSeven.get('/remove/:idtitle',function(req,res){
+       var productTitle = req.params.idtitle;
+    var ref = firebaseApp.database().ref('products');
+    console.log("remove -- cart found ")
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+         ref.orderByChild('title').equalTo(productTitle).on('child_added',function(snap,err){
+        if(err){
+            console.log("error",err);
+            return res.redirect('/');
+        }
+        else{
+            console.log("Products to reduceByOne",snap.val());
+            var productid= snap.key;
+           cart.removeItem(productid);
+        req.session.cart = cart;
+        res.redirect('/shopping-cart');
+        return null;
+        }     
+    });        
+});
+
 exports.app = functions.https.onRequest(app);
 exports.appFour = functions.https.onRequest(appFour);
